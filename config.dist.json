@@ -1,0 +1,10 @@
+{
+    "endpoint": "https://my-vault.domain.tld",
+    "keys": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e"
+    ]
+}
