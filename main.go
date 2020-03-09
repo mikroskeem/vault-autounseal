@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"flag"
 	"io/ioutil"
 	"log"
 	"math/rand"
@@ -10,10 +11,17 @@ import (
 	"time"
 )
 
+var (
+	configFilePath string
+)
+
 func main() {
-	configFile, err := ioutil.ReadFile("./config.json")
+	flag.StringVar(&configFilePath, "config-file", "./config.json", "Configuration file path")
+	flag.Parse()
+
+	configFile, err := ioutil.ReadFile(configFilePath)
 	if err != nil {
-		log.Fatalf("failed to read configuration: %s", err)
+		log.Fatalf("failed to read configuration at '%s': %s", configFilePath, err)
 	}
 	var config struct {
 		Endpoint string   `json:"endpoint"`
